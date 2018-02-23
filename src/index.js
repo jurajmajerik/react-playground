@@ -740,3 +740,40 @@ class MagicEightBall extends React.Component {
 };
 
 ReactDOM.render(<MagicEightBall />, document.getElementById('render-24'));
+
+class ToggleElement extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      display: true
+    };
+    this.toggleElement = this.toggleElement.bind(this);
+  }
+  toggleElement() {
+    this.setState({
+      display: !this.state.display
+    });
+  }
+  render() {
+    if (this.state.display) {
+      return(
+        <div>
+          <button
+            onClick={this.toggleElement}
+          >Toggle Me!</button>
+          <h3>Element Displayed!</h3>
+        </div>
+      );
+    } else {
+      return(
+        <div>
+          <button
+            onClick={this.toggleElement}
+          >Toggle Me!</button>
+        </div>
+      );
+    }
+  }
+};
+
+ReactDOM.render(<ToggleElement />, document.getElementById('render-25'));

@@ -768,8 +768,8 @@ class ToggleElement extends React.Component {
       return(
         <div>
           <button
-            onClick={this.toggleElement}
-          >Toggle Me!</button>
+            onClick={this.toggleElement}>
+            Toggle Me!</button>
         </div>
       );
     }
@@ -777,3 +777,64 @@ class ToggleElement extends React.Component {
 };
 
 ReactDOM.render(<ToggleElement />, document.getElementById('render-25'));
+
+class ToggleElement2 extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      display: true
+    };
+    this.toggleElement = this.toggleElement.bind(this);
+  }
+  toggleElement() {
+    this.setState({
+      display: !this.state.display
+    });
+  }
+  render() {
+    return(
+      <div>
+        <button
+          onClick={this.toggleElement}
+        >Toggle Me!</button>
+        {/*CONDITIONAL RENDERING*/}
+        {this.state.display && <h3>Element Displayed!</h3>}
+      </div>
+    );
+  }
+};
+
+ReactDOM.render(<ToggleElement2 />, document.getElementById('render-26'));
+
+class AgeChecker extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      input: '',
+      userAge: ''
+    }
+    this.handleInput = this.handleInput.bind(this);
+    this.submitInput = this.submitInput.bind(this);
+  }
+  handleInput(event) {
+    this.setState({ input: event.target.value });
+  }
+  submitInput() {
+    this.setState({ userAge: this.state.input });
+  }
+  render() {
+    const buttonOne = <button onClick={this.submitInput}>Submit</button>;
+    const buttonTwo = <button>You may enter!</button>;
+    const buttonThree = <button>You shall not pass!</button>;
+
+    return (<div>
+      <input type='number' value={this.state.input} onChange={this.handleInput}/>
+      {/*CONDITIONAL RENDERING USING TERNARY */}
+      {this.state.userAge !== '' ?
+      (this.state.userAge < 18 ? buttonThree : buttonTwo) :
+      buttonOne}
+    </div>);
+  }
+};
+
+ReactDOM.render(<AgeChecker />, document.getElementById('render-27'));
